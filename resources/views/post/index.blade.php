@@ -73,12 +73,10 @@
                                                 Del
                                             </button>
                                         </div>
-                                        @can('delete',$post)
                                             <form action="{{ route('post.destroy',$post->id) }}" id="deletePost{{ $post->id }}" method="post" class="d-none">
                                                 @csrf
                                                 @method('delete')
                                             </form>
-                                        @endcan
                                     </td>
                                     <td>
                                         {!! $post->show_created_at !!}
