@@ -19,15 +19,9 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::when(Auth::user()->role == 1,function ($query){
-            $query->where("user_id",Auth::id());
-        })
-            ->when(isset(request()->search),function ($query){
-
+        $posts = Post::when(isset(request()->search),function ($query){
                 $keyword = request()->search;
-
                 $query->orWhere('title','like','%'.$keyword.'%')->orWhere('description','like',"%$keyword%");
-
             })->with(['user','category'])->latest("id")->paginate(7);
 
         return view('post.index',compact('posts'));
@@ -71,7 +65,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post;
         return view('post.show',compact('post'));
     }
 

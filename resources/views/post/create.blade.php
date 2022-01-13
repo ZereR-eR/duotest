@@ -28,7 +28,7 @@
 
 
                             <div class="mb-3">
-                                <label>Post Title</label>
+                                <label>Post Category</label>
                                 <select type="text" name="category"  class="form-select @error('category') is-invalid @enderror">
                                     @foreach(\App\Models\Category::all() as $category)
                                         <option value="{{ $category->id }}" {{ old('category') ==  $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
